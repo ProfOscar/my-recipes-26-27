@@ -11,5 +11,10 @@ import { ShoppingList } from './shopping-list/shopping-list';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('my-recipes');
+  title = 'My Recipes';
+  selectedFeature: string = "recipes";
+
+  onFeatureSelected(feature: string) {
+    this.selectedFeature = feature;
+  }
 }
