@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { RecipeItem } from './recipe-item/recipe-item';
 import { RecipeModel } from '../../models/recipe.model';
 
@@ -8,9 +8,11 @@ import { RecipeModel } from '../../models/recipe.model';
   templateUrl: './recipe-list.html',
   styleUrl: './recipe-list.css',
 })
-export class RecipeList { 
+export class RecipeList {
+  @Output() recipeSelected = new EventEmitter<RecipeModel>();
+
   // Provvisoriamente scrivo nel codice una lista di ricette di test
-  recipes:RecipeModel[] = [
+  recipes: RecipeModel[] = [
     {
       "name": "Spaghetti alla chitarra",
       "desc": "Gli spaghetti alla chitarra (noti anche come maccheroni alla chitarra) sono un formato di pasta fresca all'uovo tipico della cucina abruzzese, caratterizzato da una sezione quadrata e uno spessore di circa 2-3 mm.",
@@ -91,6 +93,9 @@ export class RecipeList {
         }
       ]
     }
-]
+  ]
 
+  onItemClick(item: RecipeModel) {
+    this.recipeSelected.emit(item);
+  }
 }

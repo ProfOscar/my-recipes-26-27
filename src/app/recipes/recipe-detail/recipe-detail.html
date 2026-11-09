@@ -1,1 +1,52 @@
-<p>recipe-detail works!</p>
+@if (recipe == undefined) {
+<div class="card shadow-sm border-0 overflow-hidden mb-4">
+    <h2 class="card-title h1 fw-bold text-dark mb-0">Selezionare una ricetta.</h2>
+</div>
+} @else {
+
+<!-- TODO:: menu a discesa -->
+
+<div class="card shadow-sm border-0 overflow-hidden mb-4">
+    <!-- Immagine di Copertina della Ricetta -->
+    <div class="position-relative" style="height: 300px; overflow: hidden;">
+        <img [src]="recipe?.imgPath" [alt]="recipe?.name"
+            class="w-100 h-100 object-fit-cover position-absolute top-0 start-0">
+    </div>
+
+    <!-- Corpo dei Dettagli -->
+    <div class="card-body p-4">
+
+        <!-- Titolo e Intestazione -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="card-title h1 fw-bold text-dark mb-0">{{ recipe?.name }}</h2>
+            <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill">
+                Ricetta
+            </span>
+        </div>
+
+        <!-- Descrizione o Introduzione -->
+        <p class="card-text text-secondary lead mb-4 style-desc">
+            {{ recipe?.desc }}
+        </p>
+
+        <hr class="text-muted opacity-25 my-4">
+
+        <!-- Sezione Ingredienti -->
+        <div>
+            <h4 class="h5 fw-semibold text-uppercase tracking-wider text-muted mb-3">
+                <i class="bi bi-list-check me-2 text-success"></i>Ingredienti necessari
+            </h4>
+
+            <!-- Placeholder o Loop reale degli ingredienti -->
+            <div class="bg-light rounded p-4 border border-dashed">
+                <div class="d-flex align-items-center justify-content-center py-3 text-muted">
+                    <div class="text-center">
+                        <p class="mb-0 small fw-medium">Qui appariranno gli ingredienti della ricetta selezionata.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+}

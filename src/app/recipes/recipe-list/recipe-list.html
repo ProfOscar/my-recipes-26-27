@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-xs-12 list-group list-group-striped">
         @for (item of recipes; track $index) {
-        <app-recipe-item [recipe]="item"></app-recipe-item>
+        <app-recipe-item [recipe]="item" (click)="onItemClick(item)"></app-recipe-item>
         }
     </div>
 </div>
