@@ -4,12 +4,53 @@
 </div>
 } @else {
 
-<!-- TODO:: menu a discesa -->
+<!-- Barra delle azioni della Ricetta -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <!-- Titolo della ricetta (Includilo qui se vuoi integrarlo, altrimenti lascia solo il dropdown a destra) -->
+    <h2 class="h1 fw-bold text-dark mb-0">{{ recipe?.name }}</h2>
+
+    <!-- Menu Dropdown Gestione -->
+    <div class="dropdown">
+        <button
+            class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2 dropdown-toggle px-3 py-2 rounded-3 shadow-sm"
+            type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-gear-fill text-secondary"></i>
+            <span class="fw-semibold">Gestisci Ricetta</span>
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 mt-2">
+            <li>
+                <a class="dropdown-item d-flex align-items-center gap-2 py-2 text-success" href="#"
+                    (click)="$event.preventDefault()">
+                    <i class="bi bi-cart-plus fs-5"></i>
+                    <span>Aggiungi alla Spesa</span>
+                </a>
+            </li>
+            <li>
+                <hr class="dropdown-divider opacity-50">
+            </li>
+            <li>
+                <a class="dropdown-item d-flex align-items-center gap-2 py-2 text-dark" href="#"
+                    (click)="$event.preventDefault()">
+                    <i class="bi bi-pencil-square fs-5 text-muted"></i>
+                    <span>Modifica Ricetta</span>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item d-flex align-items-center gap-2 py-2 text-danger" href="#"
+                    (click)="$event.preventDefault()">
+                    <i class="bi bi-trash3 fs-5"></i>
+                    <span>Elimina Ricetta</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
 
 <div class="card shadow-sm border-0 overflow-hidden mb-4">
     <!-- Immagine di Copertina della Ricetta -->
     <div class="position-relative" style="height: 300px; overflow: hidden;">
-        <img [src]="recipe?.imgPath" [alt]="recipe?.name"
+        <img [src]="recipe.imgPath" [alt]="recipe.name"
             class="w-100 h-100 object-fit-cover position-absolute top-0 start-0">
     </div>
 
@@ -18,7 +59,7 @@
 
         <!-- Titolo e Intestazione -->
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="card-title h1 fw-bold text-dark mb-0">{{ recipe?.name }}</h2>
+            <h2 class="card-title h1 fw-bold text-dark mb-0">{{ recipe.name }}</h2>
             <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill">
                 Ricetta
             </span>
@@ -26,24 +67,42 @@
 
         <!-- Descrizione o Introduzione -->
         <p class="card-text text-secondary lead mb-4 style-desc">
-            {{ recipe?.desc }}
+            {{ recipe.desc }}
         </p>
 
         <hr class="text-muted opacity-25 my-4">
 
         <!-- Sezione Ingredienti -->
-        <div>
-            <h4 class="h5 fw-semibold text-uppercase tracking-wider text-muted mb-3">
-                <i class="bi bi-list-check me-2 text-success"></i>Ingredienti necessari
+        <div class="mt-4">
+            <h4 class="h6 fw-bold text-uppercase text-secondary tracking-wider mb-3 d-flex align-items-center">
+                <i class="bi bi-egg-fried me-2 text-success fs-5"></i>
+                Ingredienti necessari
             </h4>
 
-            <!-- Placeholder o Loop reale degli ingredienti -->
-            <div class="bg-light rounded p-4 border border-dashed">
-                <div class="d-flex align-items-center justify-content-center py-3 text-muted">
-                    <div class="text-center">
-                        <p class="mb-0 small fw-medium">Qui appariranno gli ingredienti della ricetta selezionata.</p>
-                    </div>
-                </div>
+            <!-- Container della Lista -->
+            <div class="card border border-light-subtle rounded-3 overflow-hidden">
+                <ul class="list-group list-group-flush mb-0">
+                    @for (ingredient of recipe.ingredients; track $index) {
+                    <li
+                        class="list-group-item d-flex justify-content-between align-items-center py-2.5 px-3 bg-white transition-all">
+
+                        <!-- Nome Ingrediente con Icona Punto Elenco -->
+                        <div class="d-flex align-items-center">
+                            <span class="p-1 bg-success-subtle rounded-circle me-2 d-inline-flex">
+                                <span class="bg-success rounded-circle" style="width: 6px; height: 6px;"></span>
+                            </span>
+                            <span class="fw-medium text-dark">{{ ingredient.name }}</span>
+                        </div>
+
+                        <!-- Quantità evidenziata -->
+                        <span
+                            class="badge bg-light text-dark border border-gray-300 font-monospace px-2.5 py-1.5 rounded-2">
+                            {{ ingredient.amount }}
+                        </span>
+
+                    </li>
+                    }
+                </ul>
             </div>
         </div>
 
