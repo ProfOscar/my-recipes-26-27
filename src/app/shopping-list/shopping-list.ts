@@ -17,4 +17,14 @@ export class ShoppingList {
     { "name": "Zucchero", amount: 500 }
   ]
 
+  onIngredientAdded(ingredient: IngredientModel) {
+    let ingredientFound = this.ingredients.find((item) => {
+      return item.name.toLowerCase().trim() == ingredient.name.toLowerCase().trim()
+    })
+    if (ingredientFound) {
+      ingredientFound.amount += ingredient.amount;
+    } else {
+      this.ingredients.push(ingredient);
+    }
+  }
 }

@@ -1,18 +1,25 @@
 <div class="row g-3 mt-1">
     <div class="col-12 col-sm-6 col-md-5">
         <label for="name" class="form-label fw-semibold">Descrizione</label>
-        <input id="name" type="text" class="form-control" placeholder="Es. Farina, Uova...">
+        <input [(ngModel)]="name" id="name" type="text" class="form-control" placeholder="Es. Farina, Uova...">
     </div>
 
     <div class="col-12 col-sm-4 col-md-3">
         <label for="amount" class="form-label fw-semibold">Quantità</label>
-        <input id="amount" type="number" class="form-control" min="1" placeholder="Es. 2">
+        <input [(ngModel)]="amount" id="amount" type="number" class="form-control" min="1" placeholder="Es. 2">
     </div>
 </div>
 
 <div class="row mt-3">
     <div class="col-12 d-flex gap-2">
-        <button type="submit" class="btn btn-success">Aggiungi</button>
-        <button type="button" class="btn btn-outline-secondary">Pulisci Campi</button>
+        <button type="submit" class="btn btn-success" (click)="onAddIngredient()">Aggiungi</button>
+        <button type="button" class="btn btn-outline-secondary" (click)="onClearFields()">Pulisci Campi</button>
     </div>
 </div>
+
+@if (errorMessage) {
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Attenzione!</strong> {{ errorMessage }}
+    <button type="button" class="btn-close" aria-label="Chiudi" (click)="errorMessage = null"></button>
+</div>
+}

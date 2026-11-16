@@ -1,7 +1,9 @@
 <div class="row">
     <div class="col-12 col-md-10">
-        <app-shopping-edit></app-shopping-edit>
+        <app-shopping-edit (ingredientAdded)="onIngredientAdded($event)"></app-shopping-edit>
+
         <hr class="my-4">
+
         <h5 class="mb-3">Lista degli Ingredienti:</h5>
         <ul class="list-group">
             @for (item of ingredients; track $index) {
