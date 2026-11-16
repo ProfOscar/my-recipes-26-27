@@ -1,12 +1,12 @@
 <div class="row g-3 mt-1">
     <div class="col-12 col-sm-6 col-md-5">
         <label for="name" class="form-label fw-semibold">Descrizione</label>
-        <input [(ngModel)]="name" id="name" type="text" class="form-control" placeholder="Es. Farina, Uova...">
+        <input #txtName [(ngModel)]="name" type="text" class="form-control" placeholder="Es. Farina, Uova...">
     </div>
 
     <div class="col-12 col-sm-4 col-md-3">
         <label for="amount" class="form-label fw-semibold">Quantità</label>
-        <input [(ngModel)]="amount" id="amount" type="number" class="form-control" min="1" placeholder="Es. 2">
+        <input [(ngModel)]="amount" type="number" class="form-control" min="1" placeholder="Es. 2">
     </div>
 </div>
 
@@ -18,8 +18,8 @@
 </div>
 
 @if (errorMessage) {
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
+<div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
     <strong>Attenzione!</strong> {{ errorMessage }}
-    <button type="button" class="btn-close" aria-label="Chiudi" (click)="errorMessage = null"></button>
+    <button type="button" class="btn-close" aria-label="Chiudi" (click)="onCloseAlert()"></button>
 </div>
 }

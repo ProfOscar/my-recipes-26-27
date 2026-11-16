@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { IngredientModel } from '../../models/ingredient.model';
 import { FormsModule } from '@angular/forms';
 
@@ -10,11 +10,16 @@ import { FormsModule } from '@angular/forms';
 })
 export class ShoppingEdit {
   @Output() ingredientAdded = new EventEmitter<IngredientModel>();
+  @ViewChild("txtName") nameInputField!: ElementRef;
 
   name?: string;
   amount?: number;
 
   errorMessage?: string = undefined;
+
+  ngAfterViewInit(): void {
+    this.onClearFields();
+  }
 
   onAddIngredient() {
     if (this.name && this.amount) {
@@ -23,6 +28,7 @@ export class ShoppingEdit {
       this.onClearFields();
     } else {
       this.errorMessage = 'Devi inserire descrizione e quantità!';
+      this.nameInputField.nativeElement.focus();
     }
   }
 
@@ -30,5 +36,11 @@ export class ShoppingEdit {
     this.name = "";
     this.amount = undefined;
     this.errorMessage = undefined;
+    this.nameInputField.nativeElement.focus();
+  }
+
+  onCloseAlert() {
+    this.errorMessage = undefined;
+    this.nameInputField.nativeElement.focus();
   }
 }
