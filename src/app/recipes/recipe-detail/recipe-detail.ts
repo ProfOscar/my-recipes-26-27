@@ -11,8 +11,18 @@ export class RecipeDetail {
   @Input() recipe: RecipeModel | undefined;
   @Output() recipeDeleted = new EventEmitter<RecipeModel>;
 
-  onDeleteRecipe(){
-    // TODO:: chiedere conferma
+  showDeleteConfirm: boolean = false;
+
+  onShowConfirmDelete() {
+    this.showDeleteConfirm = true;
+  }
+
+  cancelDelete() {
+    this.showDeleteConfirm = false;
+  }
+
+  confirmDelete() {
     this.recipeDeleted.emit(this.recipe);
+    this.showDeleteConfirm = false;
   }
 }
