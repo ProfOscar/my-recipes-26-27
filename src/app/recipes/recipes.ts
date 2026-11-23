@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { RecipeList } from './recipe-list/recipe-list';
 import { RecipeDetail } from './recipe-detail/recipe-detail';
 import { RecipeModel } from '../models/recipe.model';
+import { IngredientModel } from '../models/ingredient.model';
 
 @Component({
   selector: 'app-recipes',
@@ -10,6 +11,8 @@ import { RecipeModel } from '../models/recipe.model';
   styleUrl: './recipes.css',
 })
 export class Recipes {
+  @Output() shoppingListAddIngredients = new EventEmitter<IngredientModel[]>;
+
   selectedRecipe: RecipeModel | undefined = undefined
   recipeToDelete: RecipeModel | undefined = undefined
 
@@ -110,5 +113,9 @@ export class Recipes {
     } else {
       alert("La ricetta non esiste!");
     }
+  }
+
+  onShoppingListAddIngredients(ingredients: IngredientModel[]) {
+    this.shoppingListAddIngredients.emit(ingredients);
   }
 }

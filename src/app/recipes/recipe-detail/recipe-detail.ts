@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RecipeModel } from '../../models/recipe.model';
+import { IngredientModel } from '../../models/ingredient.model';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -10,6 +11,7 @@ import { RecipeModel } from '../../models/recipe.model';
 export class RecipeDetail {
   @Input() recipe: RecipeModel | undefined;
   @Output() recipeDeleted = new EventEmitter<RecipeModel>;
+  @Output() shoppingListAddIngredients = new EventEmitter<IngredientModel[]>;
 
   showDeleteConfirm: boolean = false;
 
@@ -24,5 +26,9 @@ export class RecipeDetail {
   confirmDelete() {
     this.recipeDeleted.emit(this.recipe);
     this.showDeleteConfirm = false;
+  }
+
+  onAddToShoppingList(){
+    this.shoppingListAddIngredients.emit(this.recipe?.ingredients);
   }
 }

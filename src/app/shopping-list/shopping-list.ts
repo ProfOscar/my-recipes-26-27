@@ -36,4 +36,8 @@ export class ShoppingList {
       alert("Elemento non trovato!");
     }
   }
+
+  addIngredients(ingredients: IngredientModel[]) {
+    console.log(ingredients);
+  }
 }
