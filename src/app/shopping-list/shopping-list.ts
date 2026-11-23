@@ -27,4 +27,13 @@ export class ShoppingList {
       this.ingredients.push(ingredient);
     }
   }
+
+  onDelete(ingredient: IngredientModel) {
+    var index = this.ingredients.indexOf(ingredient);
+    if (index != -1) {
+      this.ingredients.splice(index, 1);
+    } else {
+      alert("Elemento non trovato!");
+    }
+  }
 }

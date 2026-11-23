@@ -12,7 +12,7 @@
                     <strong>{{ item.name }}</strong>
                     <span class="badge bg-secondary rounded-pill ms-2">{{ item.amount }}</span>
                 </span>
-                <button class="btn btn-danger btn-sm">Elimina</button>
+                <button class="btn btn-danger btn-sm" (click)="onDelete(item)">Elimina</button>
             </li>
             } @empty {
             <li class="list-group-item text-muted fst-italic">
