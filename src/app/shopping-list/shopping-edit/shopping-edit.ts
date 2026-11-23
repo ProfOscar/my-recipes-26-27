@@ -12,13 +12,13 @@ export class ShoppingEdit {
   @Output() ingredientAdded = new EventEmitter<IngredientModel>();
   @ViewChild("txtName") nameInputField!: ElementRef;
 
-  name?: string;
+  name?: string = "";
   amount?: number;
 
   errorMessage?: string = undefined;
 
   ngAfterViewInit(): void {
-    this.onClearFields();
+    this.nameInputField.nativeElement.focus();
   }
 
   onAddIngredient() {
